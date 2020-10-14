@@ -20,6 +20,22 @@ var app = angular.module("TestApp", ["ngRoute","ng-pagination"]);
             templateUrl: "affBillet.html",
             controller: "ReservationController"
         })
+        .when("/ListeVols", {
+            templateUrl: "listeVols.html",
+            controller: "VolListController"
+        })
+        .when("/reservs/idvol/:id" ,{
+            templateUrl: "listeReservations.html",
+            controller: "ReservationsOfVController"
+        })
+        .when("/ChiffreAffaire/idvol/:id" ,{
+            templateUrl: "tableauChiffreAffaire.html",
+            controller: "ChiffreAffaireController"
+        })
+        .when("/Remboursement" , {
+            templateUrl : "pageRemboursement.html" , 
+            controller : "RemboursementController"
+        })
     });
 
     app.factory("AddDaysService" , function () {

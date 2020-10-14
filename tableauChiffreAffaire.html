@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h4>Toutes les réservations effectives pour le vol :{{idvol}}</h4> 
+    
+    <h2>Le tarif plein est de : Ar{{tarifPlein}}</h2>
+
+    <div>
+
+            <table border="1">
+                    <tr>
+                            <td>Nom personne </td>
+                            <td>Tarif âge</td>
+                            <td>Reduction si billet non-modifiable</td>
+                            <td>Reduction si billet non-remboursable</td>
+                            <td>Date Vol</td>
+                            <td>Montant </td>
+                            <!-- <td ng-click="distanceClick()">Distance</td> -->
+                    </tr>
+                    <tr ng-repeat="reserv in reservationsEffectives">
+                        <td>{{reserv.nom}} </td>
+                        <td>{{reserv.tarifpassager}}% du tarif plein</td>
+                        <td>-{{reserv.tarifconditionmodifiable}}%</td>
+                        <td>-{{reserv.tarifconditionremboursable}}%</td>
+                        <td>{{reserv.dateachat}}</td>
+                        <td>Ar{{reserv.montant}}</td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><b>Ar {{total}}</b></td>
+                    </tr>
+
+                    
+                    
+            </table>
+        
+            
+
+            <h4>{{message}}</h4>
+    
+        </div>
+        <button ng-click="calculChiffreAbsents()">Calcul avec les billets non modifiables/remboursables</button>
+        <table>
+            <tr ng-repeat = "unsure in reservesUnsure">
+                <td>Personne absente :{{unsure.idpersonne}}</td>
+                <td>Taux modifiable : {{unsure.tarifconditionmodifiable}}</td>
+                <td>Taux remboursable : {{unsure.tarifconditionremboursable}}</td>
+                <td>Son dû : Ar {{unsure.montant}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>+{{gainEnPlus}}</td>
+                <td><b>Ar {{totalApres}}</b></td>
+            </tr>
+        </table>
+    
+</body>
+</html>

@@ -1,7 +1,7 @@
 app.controller('ReservationController' , function($scope , $location , $http , $rootScope){
     
 
-    $scope.valider = function(){
+    $scope.valider = function(idpersonne){
         console.log($scope.date);
         
         //verifier si le $scope.idbillet est deja dans la table reservation
@@ -22,7 +22,7 @@ app.controller('ReservationController' , function($scope , $location , $http , $
                     tarifconditionmodifiable : $rootScope.tarifconditionmodifiable ,
                     tarifconditionremboursable : $rootScope.tarifconditionremboursable ,
                     montant : $scope.montant , 
-                    dateachat : $scope.date
+                    dateachat : $rootScope.datevol
                 };
         
         
@@ -33,7 +33,7 @@ app.controller('ReservationController' , function($scope , $location , $http , $
                     data: datas , 
                     headers: {
                         'Content-Type': 'application/json;charset=utf-8'
-                }
+                    }
                 })
                 .then(function success(response){
                     console.log(response.data);
@@ -53,6 +53,25 @@ app.controller('ReservationController' , function($scope , $location , $http , $
                     })
                     .then(function success(response){
                         $scope.message = response.data.message;
+                        // Ahena ny volan'ilay olona
+                        var dataa = {
+                            idpersonne : idpersonne , 
+                            montant : $scope.montant
+                        };
+                        $http({
+                            method:'PUT' , 
+                            url : 'http://localhost/WebServicePHPReady/Personne/achat' , 
+                            data : dataa ,
+                            headers: {
+                                'Content-Type': 'application/json;charset=utf-8'
+                            } 
+
+                        })
+                        .then(function success(response){
+
+                        } , function error (response){
+
+                        });
                     } , function error(response){
                         alert('erreur enregistrement reservation!');
                     });
@@ -76,10 +95,6 @@ app.controller('ReservationController' , function($scope , $location , $http , $
         
     }
 
-
-
-
-
     $scope.affBillet = (function(){
 
         //generate idbillet
@@ -89,7 +104,10 @@ app.controller('ReservationController' , function($scope , $location , $http , $
         })
         .then(function success(response){
             $scope.idbillet = response.data.id;
-            $scope.date = response.data.date;
+
+            $rootScope.dateAchatDuBillet = response.data.date;
+
+            $scope.date = $rootScope.datevol;
             $scope.idpersonne = $rootScope.idPersonne;
             $scope.idvol = $rootScope.idVolChoisi;
             $scope.villeorigine = $rootScope.villeorigine;
@@ -131,7 +149,9 @@ app.controller('ReservationController' , function($scope , $location , $http , $
                 pdfMake.createPdf(docDefinition).download("test.pdf");
             }
         });
-     }
+    }
+
+    
 
 
 

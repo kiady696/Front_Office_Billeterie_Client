@@ -18,7 +18,7 @@
             <input type="hidden" ng-model="idpersonne" ng-value="'{{idpersonne}}'" >
             <input type="hidden" ng-model="idvol" ng-value="'{{idvol}}'" >
             <input type="hidden" ng-model="montant" ng-value="'{{montant}}'" >
-            <h4>Date :{{date}}</h4>
+            <h4>Date vol :{{date}}</h4>
             <h1>Billet N° :{{idbillet}}</h1><br>
             <h3>Personne ID : {{idpersonne}}</h3><br>
             <h3>Vol ID : {{idvol}} | {{villeorigine}} - {{villedestination}}</h3><br>
@@ -31,13 +31,13 @@
         <button ng-click="export()">export pdf</button>
 
 
-        <input type="submit" value="Valider" ng-click="valider()">
+        <input type="submit" value="Valider" ng-click="valider(idpersonne)">
 
     </form>
 
     <h2>{{message}}</h2>
 
-    <button ng-click="goToListeVols()"
+    
 
     
 

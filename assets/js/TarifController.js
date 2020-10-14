@@ -21,13 +21,13 @@ app.controller('TarifController' , function($scope , $location , $http , $rootSc
     })(); 
 
     function getMontantFinal(tarifPlein , pourcentageTarifAge , choixModifiable , tauxModifiable , choixRemboursable , tauxRemboursable){
-        let montantFinal = (tarifPlein*pourcentageTarifAge) / 100;
+        var montantFinal = (tarifPlein * pourcentageTarifAge) / 100;
         var deduction = 0;
         if(!choixModifiable){
-            deduction += (tarifPlein * tauxModifiable) / 100;
+            deduction = deduction + (tarifPlein * tauxModifiable) / 100;
         }
         if(!choixRemboursable){
-            deduction += (tarifPlein * tauxRemboursable) / 100;
+            deduction = deduction + (tarifPlein * tauxRemboursable) / 100;
         }
         montantFinal = montantFinal - deduction;
         return montantFinal;
@@ -35,28 +35,31 @@ app.controller('TarifController' , function($scope , $location , $http , $rootSc
 
 
     $scope.submitChoices = function(tarifChoicesInput){
-        console.log(tarifChoicesInput.modifiable);
-        console.log(tarifChoicesInput.remboursable);
+        //console.log(tarifChoicesInput.modifiable);
+        //console.log(tarifChoicesInput.remboursable);
         if( tarifChoicesInput.modifiable !== undefined && tarifChoicesInput.modifiable !== null && tarifChoicesInput.remboursable !== undefined && tarifChoicesInput.remboursable!== false){
+            
             if(tarifChoicesInput.modifiable == 0){ //modifiable non
                 $rootScope.choixModifiable = false;
-
                 $rootScope.tarifconditionmodifiable = $rootScope.tauxModifiable;
+                
 
             } else if(tarifChoicesInput.modifiable == 1){ //modifiable oui
                 $rootScope.choixModifiable = true;
-
                 $rootScope.tarifconditionmodifiable = 0;
+                
             }
+
+
             if(tarifChoicesInput.remboursable == 0){ //Remboursable non
                 $rootScope.choixRemboursable = false;
-
                 $rootScope.tarifconditionremboursable = $rootScope.tauxRemboursable;
+                
 
             } else if(tarifChoicesInput.remboursable == 1){ //Remboursable oui
                 $rootScope.choixRemboursable = true;
-
                 $rootScope.tarifconditionremboursable = 0;
+               
             }
 
             var url = $location.url();
@@ -77,7 +80,12 @@ app.controller('TarifController' , function($scope , $location , $http , $rootSc
                 $rootScope.tarifPlein = response.data.data.montant;
                 console.log($rootScope.tarifPlein);
                 
-                var montantFinal = getMontantFinal($rootScope.tarifPlein , $rootScope.tarifAge , $rootScope.choixModifiable , $rootScope.tauxModifiable , $rootScope.choixRemboursable , $rootScope.tauxRemboursable );
+                var montantFinal = getMontantFinal(Number($rootScope.tarifPlein) , 
+                    Number($rootScope.tarifAge) , 
+                    $rootScope.choixModifiable , 
+                    Number($rootScope.tauxModifiable) , 
+                    $rootScope.choixRemboursable , 
+                    Number($rootScope.tauxRemboursable) );
 
                 console.log(montantFinal);
 

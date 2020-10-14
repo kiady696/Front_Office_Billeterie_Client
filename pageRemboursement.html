@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3> Rembourser un billet ici: </h3><br>
+    <p>* billet non-remboursable si son taux remboursable est > 0</p>
+
+    <form>
+            <label for="billet"> Billet: </label>
+            <select ng-model="remb.idbillet" name="billet">
+                <option value='0'> choisir un billet à rembourser </option> 
+                <option   ng-repeat="billet in listDropdownBillet" value='{{billet.idbillet}}'>Billet N°{{billet.idbillet}} de {{billet.nom}} - Ar {{billet.montant}} à {{billet.tarifconditionremboursable}}% de taux remboursable</option> 
+            </select>
+
+        <label for="billet"> Montant: </label>
+        <input type="number" name="montantRembourse" ng-model="remb.montantRemb" required >
+        
+        <label for="dateRemboursement"> Le: </label>
+        <input type='date' name="dateRemboursement" ng-model="remb.date" required date-directive>
+
+        <input type="submit" value="Rembourser" ng-click="rembourser($event, remb)">
+
+    </form>
+
+    <h4>{{message}}</h4>
+    
+</body>
+</html>

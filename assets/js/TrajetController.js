@@ -2,13 +2,13 @@ app.controller('TrajetController' , function($scope , $location , $http , $rootS
 
 
     function getAgeTarif(age){
-        if(age >= 12){
+        if(age < 2 ){
+            return 10;
+        }else if(age >= 12){
             return 100;
         }else if(age < 12 && age >= 2){
             return 50;
-        }else if(age < 2 ){
-            return 10;
-        }
+        } 
     }
 
 
@@ -34,12 +34,14 @@ app.controller('TrajetController' , function($scope , $location , $http , $rootS
 
             if(response.data.status){
                 $rootScope.idVolChoisi = response.data.data;
+                $rootScope.datevol = vol.datevol;
                 $rootScope.villeorigine = vol.villeorigine;
                 $rootScope.villedestination = vol.villedestination;
                 console.log('Afaka maka billet amn\'ito vol ito fa mbola tsy feno' );
                 console.log($rootScope.idVolChoisi);
                 //get % tarif selon age
-                $rootScope.tarifAge = getAgeTarif($rootScope.agePersonne);
+                $rootScope.tarifAge = getAgeTarif(Number($rootScope.agePersonne));
+                console.log("YEEEEEEEHHHAAAAAA AAAAAAAA");
                 console.log($rootScope.tarifAge);
                 $location.path("/Tarif/idvol/"+$rootScope.idVolChoisi);
             }

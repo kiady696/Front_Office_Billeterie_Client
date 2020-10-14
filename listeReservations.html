@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h4>Toutes les réservations pour le vol :{{idvol}}</h4> 
+
+    <h3>Validation des passagers</h3>
+
+    <div>
+
+            <table border="1">
+                    <tr>
+                            <td>Nom personne </td>
+                            <td>Tarif âge</td>
+                            <td>Reduction si billet non-modifiable</td>
+                            <td>Reduction si billet non-remboursable</td>
+                            <td>Date vol</td>
+                            <td>Montant </td>
+                            <!-- <td ng-click="distanceClick()">Distance</td> -->
+                    </tr>
+                    <tr ng-repeat="reserv in reservations">
+                        <td>{{reserv.nom}} </td>
+                        <td>{{reserv.tarifpassager}}% du tarif plein</td>
+                        <td>-{{reserv.tarifconditionmodifiable}}%</td>
+                        <td>-{{reserv.tarifconditionremboursable}}%</td>
+                        <td>{{reserv.dateachat}}</td>
+                        <td>Ar{{reserv.montant}}</td>
+
+                        <td><input type='checkbox' value='{{ reserv.idreservation }}' ng-model='reserv.selected'><td>
+                                
+<!--                             COCHAAAAGE
+ -->                            
+<!--                         <td><button type="submit" ng-click="getReservations(vol.idvol)" value="RUD"> Liste reservations </button></td> 
+ -->    
+    
+                    </tr>
+
+                    
+                    
+            </table>
+
+            <input type='button' ng-click='checkVal()' value='Valider ces passagers'>
+
+            <h4>{{message}}</h4>
+    
+        </div>
+        <button ng-click="goToChiffreDaffaire(idvol)" >Voir le chiffre d'affaire de ce vol</button>
+    
+</body>
+</html>
