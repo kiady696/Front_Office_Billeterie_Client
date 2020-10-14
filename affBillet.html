@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form name="ReservationForm">
+
+        <div id="exportthis">
+
+            <h4>Billeterie</h4><br>
+            <input type="hidden" ng-model="date" ng-value="'{{date}}'" >
+            <input type="hidden" ng-model="idbillet" ng-value="'{{idbillet}}'" >
+            <input type="hidden" ng-model="idpersonne" ng-value="'{{idpersonne}}'" >
+            <input type="hidden" ng-model="idvol" ng-value="'{{idvol}}'" >
+            <input type="hidden" ng-model="montant" ng-value="'{{montant}}'" >
+            <h4>Date :{{date}}</h4>
+            <h1>Billet N° :{{idbillet}}</h1><br>
+            <h3>Personne ID : {{idpersonne}}</h3><br>
+            <h3>Vol ID : {{idvol}} | {{villeorigine}} - {{villedestination}}</h3><br>
+            <h3>Modifiable : {{modifiable}} {{remiseMod}}</h3><br>
+            <h3>Remboursable : {{remboursable}} {{remiseRemb}}</h3><br>
+            <h2>Montant :          <b>Ar{{montant}}</b></h2>
+
+        </div>
+
+        <button ng-click="export()">export pdf</button>
+
+
+        <input type="submit" value="Valider" ng-click="valider()">
+
+    </form>
+
+    <h2>{{message}}</h2>
+
+    <button ng-click="goToListeVols()"
+
+    
+
+    
+</body>
+</html>

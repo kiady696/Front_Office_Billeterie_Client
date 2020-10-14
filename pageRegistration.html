@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2> Veuillez renseigner sur votre personne </h2>
+
+    <form name="registrationForm" ng-submit="registrationForm.nom.$valid && registrationForm.age.$valid && register(personne)">
+
+        <label for="nom">Votre nom:</label>
+        <input type="text" name="nom" ng-model="personne.nom" required basic-input-directive >
+        <p ng-if="registrationForm.nom.$error.myValidator">Entrer un nom valide</p>
+
+        <label for="age">Votre age:</label>
+        <input type="number" name="age" ng-model="personne.age" required number >
+        <p ng-if="registrationForm.age.$error.number">Entrer un âge valide</p>
+
+        <input type="submit" value="S'identifier">
+
+        <h4>{{message}}</h4>
+
+
+    </form>
+    
+</body>
+</html>

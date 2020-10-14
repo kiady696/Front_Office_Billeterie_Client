@@ -40,17 +40,17 @@
 
     // CUSTOM VALIDATION     
 
-    // app.directive('number', function() {
-    //     var NUMBER_REGEXP = /^(\d+)$/;
-    //     return {
-    //       require: 'ngModel',
-    //       link: function(scope, elm, attrs, ctrl) {
-    //         ctrl.$validators.number = function(modelValue, viewValue) {
-    //           return NUMBER_REGEXP.test(viewValue);
-    //         };
-    //       }
-    //     };
-    //   });
+    app.directive('number', function() {
+        var NUMBER_REGEXP = /^[\d]{1,2}$/;
+        return {
+          require: 'ngModel',
+          link: function(scope, elm, attrs, ctrl) {
+            ctrl.$validators.number = function(modelValue, viewValue) {
+              return NUMBER_REGEXP.test(viewValue);
+            };
+          }
+        };
+    });
 
     // HTML VIEW
 

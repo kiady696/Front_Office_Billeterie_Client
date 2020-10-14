@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3> Voulez-vous que votre billet soit :</h3><br>
+
+    <form>
+        <label for="modifiable"> De date modifiable : </label>
+        <select ng-model="tarif.modifiable" name="modifiable" required>
+                <option value=1> Oui </option> 
+                <option value=0> Non </option> 
+        </select><br>
+
+        <label for="remboursable"> Remboursable : </label>
+        <select ng-model="tarif.remboursable" name="remboursable" required>
+            <option value=1> Oui </option> 
+            <option value=0> Non </option> 
+        </select><br>
+
+        <input type="submit" value="Suivant" ng-click="submitChoices(tarif)">
+
+    </form>
+
+    <h4>{{message}}</h4>
+    
+</body>
+</html>

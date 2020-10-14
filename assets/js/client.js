@@ -5,44 +5,20 @@ var app = angular.module("TestApp", ["ngRoute","ng-pagination"]);
     app.config(function ($routeProvider){
         $routeProvider
         .when("/" ,{
-            templateUrl : "menu.html",
-            controller : "MenuController"
+            templateUrl : "pageRegistration.html",
+            controller : "PersonneController"
         })
-        .when("/trajets" , {
+        .when("/choixTrajet" , {
             templateUrl : "listTrajet.html",
             controller : "TrajetController"
         })
-        .when("/trajets/id/:id" , {
-            templateUrl: "TrajetRUD.html",
-            controller : "TrajetIndivController"
+        .when("/Tarif/idvol/:id" , {
+            templateUrl: "choixReduction.html",
+            controller : "TarifController"
         })
-        .when("/create" , {
-            templateUrl: "createTrajet.html",
-            controller : "TrajetController"
-        })
-        .when("/vols" , {
-            templateUrl: "listVol.html",
-            controller: "VolController"
-        })
-        .when("/vols/id/:id" , {
-            templateUrl: "VolRUD.html",
-            controller: "VolIndivController"
-        })
-        .when("/createvol" , {
-            templateUrl: 'createVol.html',
-            controller: 'VolController'
-        })
-        .when("/tarifs" , {
-            templateUrl: 'listTarif.html',
-            controller: 'TarifController' 
-        })
-        .when("/tarifs/id/:id" , {
-            templateUrl: "TarifRUD.html" , 
-            controller: "TarifIndivController"
-        })
-        .when("/createtarif" , {
-            templateUrl: "createTarif.html" ,
-            controller: "TarifController"
+        .when("/affBillet" ,{
+            templateUrl: "affBillet.html",
+            controller: "ReservationController"
         })
     });
 

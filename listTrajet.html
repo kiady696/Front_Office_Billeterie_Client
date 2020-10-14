@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h4>Où voulez-vous aller?</h4> 
+
+    <form name="trajetForm" ng-submit="trajetForm.villeorigine.$valid && trajetForm.villedestination.$valid && searchVol(trajet) ">
+        
+        <label for="villeorigine"> Départ :</label>
+        <input type="text" name="villeorigine" ng-model="trajet.villeorigine" ng-change="suggererVilleOrigine()" basic-input-directive>
+        <p ng-if="trajetForm.villeorigine.$error.myValidator">Entrer un nom de ville valide</p>
+
+        <label for="villedestination"> Destination :</label>
+        <input type="text" name="villedestination" ng-model="trajet.villedestination" ng-change="suggererVilleDestination()" basic-input-directive>
+        <p ng-if="trajetForm.villedestination.$error.myValidator">Entrer un nom de ville valide</p>
+
+        <label for="datevol"> Aux environs de la date:</label>
+        <input type="date" name="datevol" ng-model="trajet.datevol" >
+        <p ng-if="trajetForm.datevol.$error.myValidator">Entrer une date valide</p>
+
+        <input type="submit" value="Rechercher">
+
+
+    </form>
+
+
+    <div>
+            <table border="1">
+                    <tr>
+                            <td>trajet</td>
+                            <td>Avion</td>
+                            <td>Date du Vol</td>
+                            <td>horaire</td>
+                            <!-- <td ng-click="distanceClick()">Distance</td> -->
+                    </tr>
+                    <tr ng-repeat="vol in vols">
+                        <td>{{vol.idvol}} {{vol.villeorigine}}-{{vol.villedestination}}</td>
+                        <td>{{vol.designation}}</td>
+                        <td>{{vol.datevol}}</td>
+                        <td>{{vol.horaire}}</td>
+    
+                        <td><button type="submit" ng-click="getBillet(vol)" value="RUD">Get Billet </button></td> 
+    
+    
+                    </tr>
+                    
+            </table>
+
+            <h4>{{message}}</h4>
+    
+        </div>
+    
+</body>
+</html>
