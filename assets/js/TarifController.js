@@ -24,10 +24,10 @@ app.controller('TarifController' , function($scope , $location , $http , $rootSc
         var montantFinal = (tarifPlein * pourcentageTarifAge) / 100;
         var deduction = 0;
         if(!choixModifiable){
-            deduction = deduction + (tarifPlein * tauxModifiable) / 100;
+            deduction = deduction + (montantFinal * tauxModifiable) / 100;
         }
         if(!choixRemboursable){
-            deduction = deduction + (tarifPlein * tauxRemboursable) / 100;
+            deduction = deduction + (montantFinal * tauxRemboursable) / 100;
         }
         montantFinal = montantFinal - deduction;
         return montantFinal;
